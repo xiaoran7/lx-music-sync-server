@@ -11,6 +11,7 @@ declare global {
       moduleReadys: {
         list: boolean
         dislike: boolean
+        statistics: boolean
       }
 
       onClose: (handler: (err: Error) => (void | Promise<void>)) => () => void
@@ -19,6 +20,7 @@ declare global {
       remote: LX.Sync.ClientSyncActions
       remoteQueueList: LX.Sync.ClientSyncListActions
       remoteQueueDislike: LX.Sync.ClientSyncDislikeActions
+      remoteQueueStatistics: LX.Sync.ClientSyncStatisticsActions
     }
     type SocketServer = WS.Server<Socket>
   }

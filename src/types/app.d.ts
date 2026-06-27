@@ -1,5 +1,5 @@
 /* eslint-disable no-var */
-import { type ListEventType, type DislikeEventType } from '@/event'
+import { type ListEventType, type DislikeEventType, type StatisticsEventType } from '@/event'
 
 declare global {
   interface Lx {
@@ -13,6 +13,7 @@ declare global {
   var lx: Lx
   var event_list: ListEventType
   var event_dislike: DislikeEventType
+  var event_statistics: StatisticsEventType
 
 }
 

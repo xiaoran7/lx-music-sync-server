@@ -27,10 +27,14 @@ declare namespace LX {
     interface DislikeConfig {
       skipSnapshot: boolean
     }
+    interface StatisticsConfig {
+      skipSnapshot: boolean
+    }
     type ServerType = 'desktop-app' | 'server'
     interface EnabledFeatures {
       list?: false | ListConfig
       dislike?: false | DislikeConfig
+      statistics?: false | StatisticsConfig
     }
     type SupportedFeatures = Partial<{ [k in keyof EnabledFeatures]: number }>
   }
