@@ -1,7 +1,7 @@
 import http, { type IncomingMessage } from 'node:http'
 import { WebSocketServer } from 'ws'
 import { registerLocalSyncEvent, callObj, sync } from './sync'
-import { authCode, authConnect } from './auth'
+import { authCode, authConnect, exportList } from './auth'
 import { getAddress, sendStatus, decryptMsg, encryptMsg } from '@/utils/tools'
 import { accessLog, startupLog, syncLog } from '@/utils/log4js'
 import { SYNC_CLOSE_CODE, SYNC_CODE } from '@/constants'
@@ -142,6 +142,9 @@ const handleStartServer = async(port = 9527, ip = '127.0.0.1') => await new Prom
         break
       case '/ah':
         void authCode(req, res, lx.config.users)
+        break
+      case '/export-list':
+        void exportList(req, res, lx.config.users)
         break
       default:
         code = 401

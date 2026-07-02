@@ -102,6 +102,41 @@ export const authCode = async(req: http.IncomingMessage, res: http.ServerRespons
   res.end(msg)
 }
 
+// 只读导出接口: 供外部工具(如 mineradio)用用户名+密码拉取最新列表快照
+// GET /export-list  headers: x-user / x-key(密码)
+export const exportList = async(req: http.IncomingMessage, res: http.ServerResponse, users: LX.Config['users']) => {
+  const ip = getAvailableIP(req)
+  if (!ip) {
+    res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' })
+    res.end(JSON.stringify({ error: SYNC_CODE.msgBlockedIp }))
+    return
+  }
+  const userName = typeof req.headers['x-user'] == 'string' ? req.headers['x-user'] : ''
+  const key = typeof req.headers['x-key'] == 'string' ? req.headers['x-key'] : ''
+  const userInfo = users.find(u => u.name === userName)
+  if (!userInfo || !key || key !== userInfo.password) {
+    store.set(ip, (store.get<number>(ip) ?? 0) + 1)
+    res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8' })
+    res.end(JSON.stringify({ error: SYNC_CODE.msgAuthFailed }))
+    return
+  }
+  try {
+    const userSpace = getUserSpace(userInfo.name)
+    const snapshotDataManage = userSpace.listManage.snapshotDataManage
+    const snapshotInfo = await snapshotDataManage.getSnapshotInfo()
+    const listData = snapshotInfo.latest ? await snapshotDataManage.getSnapshot(snapshotInfo.latest) : null
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' })
+    res.end(JSON.stringify({
+      user: userInfo.name,
+      time: snapshotInfo.time,
+      listData: listData ?? { defaultList: [], loveList: [], userList: [] },
+    }))
+  } catch (err: any) {
+    res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' })
+    res.end(JSON.stringify({ error: err?.message ?? 'export failed' }))
+  }
+}
+
 const verifyConnection = (encryptMsg: string, userId: string) => {
   const userName = getUserName(userId)
   // console.log(userName)
