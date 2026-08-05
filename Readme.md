@@ -192,6 +192,16 @@ server {
 3. 删除 `snapshotInfo.json` 文件内 `clients` 内的所有设备信息，删除后的内容类似于：`{...其他内容,"clients":{}}`；
 4. 启用同步服务，连接后勾选「完全覆盖」，选择「远程覆盖本地」。
 
+## 只读列表导出接口（本 fork 新增）
+
+`GET /export-list`，供外部工具（如 mineradio）拉取某用户最新的列表快照，不参与同步协议、不影响已连接的客户端。
+
+```bash
+curl http://<服务器地址>/export-list -H "x-user: <用户名>" -H "x-key: <该用户的密码/连接码>"
+```
+
+返回 `{"user": "...", "time": <快照时间戳>, "listData": {"defaultList": [...], "loveList": [...], "userList": [...]}}`；认证失败返回 401（连续输错同样计入 IP 封禁计数），该用户尚无快照时 `listData` 为三个空列表。
+
 ## 附录
 
 ### 可用的环境变量
