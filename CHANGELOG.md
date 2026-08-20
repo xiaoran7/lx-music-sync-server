@@ -6,6 +6,17 @@ Project versioning adheres to [Semantic Versioning](http://semver.org/).
 Commit convention is based on [Conventional Commits](http://conventionalcommits.org).
 Change log format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased]
+
+### Added
+
+- Added the fork-local statistics CRDT module and synchronization protocol used by Desktop, Mobile and Mineradio clients.
+- Added the read-only list export endpoint used by compatibility clients.
+
+### Changed
+
+- Added current fork documentation and deployment gotchas; the upstream release history below does not describe these modules.
+
 ## [2.1.2](https://github.com/lyswhut/lx-music-sync-server/compare/v2.1.1...v2.1.2) - 2023-10-26
 
 ### 修复
