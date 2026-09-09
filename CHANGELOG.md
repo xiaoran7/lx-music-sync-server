@@ -15,6 +15,7 @@ Change log format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
+- Replaced the long operating-system/PM2/Nginx walkthrough with a fork entrypoint covering build/run commands, TLS/proxy trust, secret handling, persistence, recovery, export and statistics compatibility (2026-09-09 documentation governance).
 - Added current fork documentation and deployment gotchas; the upstream release history below does not describe these modules.
 
 ## [2.1.2](https://github.com/lyswhut/lx-music-sync-server/compare/v2.1.1...v2.1.2) - 2023-10-26
