@@ -2,7 +2,7 @@
 
 LX Music 私有数据同步服务的本地二开仓，支持列表、dislike、statistics 同步与快照，并提供兼容客户端使用的只读列表导出接口。版本、脚本和协议以 `package.json`、`src/` 与 tests 为准。
 
-本机家族入口：`D:\ClaudeSpace\Project\lx-music\docx\README.md`。`gitea` 保存当前 fork，`deploy` 是既有部署分支，`origin` 仅作上游基线。服务端协议变更必须同步核对 Desktop、Mobile、Mineradio 和 Mineradio Mobile。
+本机家族入口：[家族文档](../docx/README.md)。`gitea` 保存当前 fork，`deploy` 是既有部署分支，`origin` 仅作上游基线。服务端协议变更必须同步核对 Desktop、Mobile、Mineradio 和 Mineradio Mobile。
 
 ## 开发与验证
 
@@ -51,3 +51,5 @@ statistics 采用按设备分桶的状态型 CRDT：同设备逐键取 `max`，�
 - [CHANGELOG](CHANGELOG.md)：fork 变更位于 `Unreleased`，其后为上游历史。
 - `config.js`：配置字段和默认值的代码事实源。
 - [LICENSE](LICENSE)：Apache-2.0。服务只同步用户提供的数据，不授予第三方音乐内容的版权或分发权。
+
+容器镜像通过 Dockerfile 覆盖为 `BIND_IP=0.0.0.0`；源码直接启动的默认值是回环地址。检查宿主端口映射后再判断对外暴露范围。
