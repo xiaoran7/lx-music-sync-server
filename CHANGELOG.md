@@ -1,17 +1,16 @@
 # lx-music-script change log
 
+## 2026-10-07 — 跨端架构、CRDT同步协议与部署运维文档独立收敛
+
+- 引入 `docs/ARCHITECTURE.md` 与 `docs/DEPLOYMENT.md`：解耦并独立收敛按设备分桶的 CRDT 听歌统计数据结构、核心合并规则、WebSocket 握手协议与 Docker/生产部署运维规范，实现本仓单项目闭环自洽维护。
+
 ## 2026-09-26 — 文档核对与精简
 
 - 核对 package 脚本、运行入口及协议文档，统一本仓规则，保留上游 FAQ 与发布历史。
+
 ## 2026-09-26 — 单项目 Agent 入口
 
 - 规则、长期偏好和相关排障经验迁入本项目，agent 不再依赖父目录共享文档。
-
-All notable changes to this project will be documented in this file.
-
-Project versioning adheres to [Semantic Versioning](http://semver.org/).
-Commit convention is based on [Conventional Commits](http://conventionalcommits.org).
-Change log format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 All notable changes to this project will be documented in this file.
 
