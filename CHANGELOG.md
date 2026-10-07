@@ -1,5 +1,11 @@
 # lx-music-script change log
 
+## 2026-10-07 — 重构开源发布文档与生产环境配置脱敏
+
+- 重构 `README.md`：致敬原作者 lyswhut，系统梳理“落雪全家桶”（Desktop、Mobile、Sync Server、Share Server）协同架构与数据流转。
+- 编写 Sync Server 保姆级部署教程：提供 Docker Compose 一键启动、Node.js 源码运行、PM2 守护与 Nginx WebSocket 反代配置。
+- 生产环境脱敏：剔除所有私有域名与环境依赖，将示例地址标准化为 `https://sync.example.com`。
+
 ## 2026-10-07 — 跨端架构、CRDT同步协议与部署运维文档独立收敛
 
 - 引入 `docs/ARCHITECTURE.md` 与 `docs/DEPLOYMENT.md`：解耦并独立收敛按设备分桶的 CRDT 听歌统计数据结构、核心合并规则、WebSocket 握手协议与 Docker/生产部署运维规范，实现本仓单项目闭环自洽维护。
